@@ -9,7 +9,22 @@ module.exports = {
         hints: false
     },
     module: {
-        rules: [{
+        rules: [
+            {
+                test: /\.styl$/,
+                use: [
+                    ExtractTextPlugin.loader,
+                    'css-loader',
+                    'postcss-loader',
+                    {
+                        loader: 'stylus-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.(js)$/,
                 exclude: /node_modules/,
                 use: {
