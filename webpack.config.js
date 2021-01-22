@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const uglifyJsPlugin = require("babel-minify-webpack-plugin");
+const uglifyJsPlugin = require('babel-minify-webpack-plugin');
 const ExtractTextPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -55,11 +55,25 @@ module.exports = {
                     'css-loader',
                     'postcss-loader',
                 ]
+            },
+            {
+                test: /\.(eot|woff|woff2|ttf)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                    publicPath: '../fonts/',
+                    emitFile: false,
+                }
+            },
+            {
+                test: /\.(svg|jpg|png|gif)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                    publicPath: '../img/',
+                    emitFile: false,
+                }
             }
-            // {
-            //     test: /\.(svg|eot|woff|woff2|ttf)$/,
-            //     loader: 'file-loader'
-            // }
         ]
     },
     plugins: [
@@ -68,8 +82,8 @@ module.exports = {
             filename: 'css/main.css'
         }),
         new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
+            $: 'jquery',
+            jQuery: 'jquery'
         })
     ],
     resolve: {
