@@ -25,16 +25,6 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(js)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
-            },
-            {
                 test: /\.(sass)$/,
                 use: [
                     ExtractTextPlugin.loader,
@@ -55,6 +45,16 @@ module.exports = {
                     'css-loader',
                     'postcss-loader',
                 ]
+            },
+            {
+                test: /\.(js)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
             },
             {
                 test: /\.(eot|woff|woff2|ttf)$/,
@@ -79,11 +79,7 @@ module.exports = {
     plugins: [
         new uglifyJsPlugin(),
         new ExtractTextPlugin({
-            filename: 'css/main.css'
-        }),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
+            filename: 'css/style.min.css'
         })
     ],
     resolve: {
